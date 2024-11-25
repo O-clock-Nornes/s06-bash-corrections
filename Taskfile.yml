@@ -1,0 +1,9 @@
+version: '3'
+
+tasks:
+  hello:
+    cmds:
+      - echo "Hello world !"
+  backup:
+    cmds:
+      - rsync -a -P student@profy12-server.eddi.cloud:/home/student/ backup/
