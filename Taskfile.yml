@@ -6,4 +6,13 @@ tasks:
       - echo "Hello world !"
   backup:
     cmds:
-      - rsync -a -P student@profy12-server.eddi.cloud:/home/student/ backup/
+      - rsync -a -P --delete student@profy12-server.eddi.cloud:/home/student/ backup/
+  deploy:
+    cmds:
+      - scp backup.sh student@profy12-server.eddi.cloud:/home/student/backup.sh
+      - scp analyse.sh student@profy12-server.eddi.cloud:/home/student/analyse.sh
+      - ssh student@profy12-server.eddi.cloud "chmod a+x backup.sh"
+      - ssh student@profy12-server.eddi.cloud "chmod a+x analyse.sh"
+  run:
+    cmds:
+      - ssh student@profy12-server.eddi.cloud "sudo task backup"
